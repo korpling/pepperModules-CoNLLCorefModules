@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import org.corpus_tools.pepper.common.DOCUMENT_STATUS;
 import org.corpus_tools.pepper.impl.PepperMapperImpl;
 import org.corpus_tools.pepper.modules.exceptions.PepperModuleDataException;
@@ -270,6 +271,8 @@ public class Salt2CoNLLCorefMapper extends PepperMapperImpl {
 
             String group;
             String oldGroup;
+            HashMap<String,SNode> NodesToAdd = new HashMap();
+            HashMap<String,SNode> NodesToRemove = new HashMap();
             if (this.nodesToGroups.containsKey(src)){
                 // Source already has group ID, apply to target
                 group = this.nodesToGroups.get(src);
@@ -279,9 +282,19 @@ public class Salt2CoNLLCorefMapper extends PepperMapperImpl {
                     // Update old group members to new group ID
                     for (SNode transitiveNode : this.groupsToNodes.get(oldGroup)){
                         nodesToGroups.put(transitiveNode, group);
-                        groupsToNodes.get(group).add(transitiveNode);
-                        groupsToNodes.get(oldGroup).remove(transitiveNode);
+                        NodesToAdd.put(group,transitiveNode);
+                        NodesToRemove.put(oldGroup,transitiveNode);
                     }                    
+                    for (Map.Entry<String, SNode> entry : NodesToAdd.entrySet()) {
+                        String grp = entry.getKey();
+                        SNode nd = entry.getValue();
+                        groupsToNodes.get(grp).add(nd);
+                    }                
+                    for (Map.Entry<String, SNode> entry : NodesToRemove.entrySet()) {
+                        String grp = entry.getKey();
+                        SNode nd = entry.getValue();
+                        groupsToNodes.get(grp).remove(nd);
+                    }                
                 }
             }
             else if (this.nodesToGroups.containsKey(trg)){
