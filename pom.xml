@@ -32,4 +32,12 @@
 			<organization>GU</organization>
 		</developer>
 	</developers>
+    <dependencies>
+        <dependency>
+            <groupId>org.corpus-tools</groupId>
+            <artifactId>pepperModules-CoNLLModules</artifactId>
+            <version>1.2.0</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
 </project>
