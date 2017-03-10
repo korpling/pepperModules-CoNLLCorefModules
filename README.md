@@ -1,6 +1,6 @@
 ![SaltNPepper project](./gh-site/img/SaltNPepper_logo2010.png)
 # CoNLLCorefModules
-This repository provides support for bracketed coreference in the CoNLL shared task coreference style, within the Pepper converter framework (see https://u.hu-berlin.de/saltnpepper). So far, only an Exporter module for the format has been developed. In the future, an importer may also be added.
+This repository provides support for bracketed coreference in the CoNLL shared task coreference style, within the Pepper converter framework (see https://u.hu-berlin.de/saltnpepper). Both an Exporter module and an Importer module is provided.
 
 Pepper is a pluggable framework to convert a variety of linguistic formats (like [TigerXML](http://www.ims.uni-stuttgart.de/forschung/ressourcen/werkzeuge/TIGERSearch/doc/html/TigerXML.html), the [EXMARaLDA format](http://www.exmaralda.org/), [PAULA](http://www.sfb632.uni-potsdam.de/paula.html) etc.) into each other. Furthermore Pepper uses Salt (see https://github.com/korpling/salt), the graph-based meta model for linguistic data, which acts as an intermediate model to reduce the number of mappings to be implemented. This means converting data from a format _A_ to a format _B_ consists of two steps. First the data is mapped from format _A_ to Salt and second from Salt to format _B_. This detour reduces the number of Pepper modules from _n<sup>2</sup>-n_ (in the case of a direct mapping) to _2n_ to handle  n formats.
 
@@ -11,7 +11,7 @@ In Pepper there are three different types of modules:
 * manipulators (to map a Salt model to a Salt model, e.g. to add additional annotations, to rename things to merge data etc.)
 * exporters (to map a Salt model to a format _B_).
 
-For a simple Pepper workflow you need at least one importer and one exporter. This project currently supplies an importer for WebAnno TSV format, version 3.
+For a simple Pepper workflow you need at least one importer and one exporter. This project currently supplies an importer and an exporter for the CoNLL Coref format.
 
 ## Requirements
 Since the module provided here is a plugin for Pepper, you need an instance of the Pepper framework. If you do not already have a running Pepper instance, click on the link below and download the latest stable version (not a SNAPSHOT):
@@ -45,16 +45,32 @@ A detailed description of the Pepper workflow can be found on the [Pepper projec
 ### a) Identify the module by name
 
 ```xml
+<importer name="CoNLLCorefImporter" path="PATH_TO_CORPUS"/>
+```
+or
+```xml
 <exporter name="CoNLLCorefExporter" path="PATH_TO_CORPUS"/>
 ```
 
 ### b) Identify the module by formats
 
 ```xml
+<importer formatName="ConllCoref" formatVersion="1.0" path="PATH_TO_CORPUS"/>
+```
+or
+```xml
 <exporter formatName="ConllCoref" formatVersion="1.0" path="PATH_TO_CORPUS"/>
 ```
 
 ### c) Use properties
+
+```xml
+<importer name="CoNLLCorefImporter" path="PATH_TO_CORPUS">
+  <property key="PROPERTY_NAME">PROPERTY_VALUE</property>
+</importer>
+```
+
+or
 
 ```xml
 <exporter name="CoNLLCorefExporter" path="PATH_TO_CORPUS">
@@ -84,8 +100,105 @@ This project module was developed at Georgetown University.
   See the License for the specific language governing permissions and
   limitations under the License.
 
+  
 
-# <a name="details1">CoNLLCorefExporter</a>
+
+# <a name="details1">CoNLLCorefImporter</a>
+
+## Properties
+
+|name of property			|possible values		|default value|	
+|---------------------|-------------------|-------------|
+|ConllCoref.namespace			    |String           |'coref'|
+|ConllCoref.relType			    |String           |'coref'|
+|ConllCoref.spanAnnotationName			    |String           |'entity'|
+|ConllCoref.spanAnnotationValue			    |String           |'entity'|
+
+### namespace
+
+The name of the Salt layer or namespace to assign to imported spans. Default is "coref".
+
+### relType
+
+Name of the edge type to assign to two spans belonging to the same output ID, e.g. 'coref'. .
+
+### spanAnnotationName
+
+Name of an annotatiton to add to all imported spans.. Default is 'entity', set to empty string to prevent annotations being added (may then not be exported in some output formats).
+
+### spanAnnotationValue
+
+Value of an annotatiton to add to all imported spans. Default is 'entity', meaning together with the previous setting, all spans are annotated with entity="entity".
+
+## Example input format
+
+The input gives at least three columns: a numerical token index, which is ignored, the token in the next column and potentially multiple coreference IDs in the last column (intervening columns are ignored). Clashes in the coref column are prevented via pipes (e.g. a line can include a column `(23|48)` to indicate ID 23 opening and 48 closing, though this can also be written as "48)(23" ).
+
+```
+# begin document GUM_interview_ants
+0	Biologist	(1
+1	Nick	_
+2	Bos	1)
+3	tells	_
+4	Wikinews	(2)
+5	about	_
+6	'	_
+7	self-medicating	(3
+8	'	_
+9	ants	3)
+10	Tuesday	(4)
+11	,	_
+12	September	(4
+13	1	_
+14	,	_
+15	2015	4)
+16	Formica	(3
+17	fusca	3)
+18	,	_
+19	from	_
+20	file	(5)
+21	.	_
+22	Image	(6)
+23	:	_
+24	Mathias	(7
+25	Krumbholz	7)
+26	.	_
+27	Nick	(1
+28	Bos	1)
+29	,	_
+30	of	_
+31	the	(8
+32	University	_
+33	of	_
+34	Helsinki	8)
+35	,	_
+36	studies	_
+37	"	_
+38	the	(9
+39	amazing	_
+40	adaptations	9)
+41	social	(10
+42	insects	10)
+43	have	_
+44	evolved	_
+45	in	_
+46	order	_
+47	to	_
+48	fight	_
+49	the	(11
+50	extreme	_
+51	parasite	(12)
+52	pressure	11)
+53	they	(10)
+54	experience	_
+55	"	_
+56	.	_
+...
+# end document
+
+```  
+
+# <a name="details2">CoNLLCorefExporter</a>
 
 ## Properties
 
