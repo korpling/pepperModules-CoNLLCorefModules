@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1476975332768
+Bnd-LastModified: 1488903636531
 Build-Jdk: 1.8.0_101
 Built-By: az364
 Bundle-Description: Provides shared POM-data.
@@ -15,13 +15,16 @@ Created-By: Apache Maven Bundle Plugin
 Export-Package: org.corpus_tools.pepperModules_CoNLLCorefModules;uses:="
  org.corpus_tools.pepper.common,org.corpus_tools.pepper.impl,org.corpus_
  tools.pepper.modules,org.corpus_tools.pepper.modules.exceptions,org.cor
- pus_tools.salt.graph";version="1.0.0.SNAPSHOT"
+ pus_tools.salt.common,org.corpus_tools.salt.core,org.corpus_tools.salt.
+ graph,org.eclipse.emf.common.util";version="1.0.0.SNAPSHOT"
 Import-Package: org.corpus_tools.pepper.common;version="[3.0,4)",org.cor
  pus_tools.pepper.impl;version="[3.0,4)",org.corpus_tools.pepper.modules
  ;version="[3.0,4)",org.corpus_tools.pepper.modules.exceptions;version="
- [3.0,4)",org.corpus_tools.salt.common;version="[3.0,4)",org.corpus_tool
- s.salt.core;version="[3.0,4)",org.corpus_tools.salt.graph;version="[3.0
- ,4)",org.eclipse.emf.common.util,org.slf4j;version="[1.7,2)"
+ [3.0,4)",org.corpus_tools.peppermodules.conll.tupleconnector;version="[
+ 1.2,2)",org.corpus_tools.salt;version="[3.0,4)",org.corpus_tools.salt.c
+ ommon;version="[3.0,4)",org.corpus_tools.salt.core;version="[3.0,4)",or
+ g.corpus_tools.salt.graph;version="[3.0,4)",org.eclipse.emf.common.util
+ ,org.slf4j;version="[1.7,2)"
 META-INF: C:\NetBeans\SNP\pepperModules-CoNLLCorefModules/META-INF
 OSGI-INF: OSGI-INF
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"

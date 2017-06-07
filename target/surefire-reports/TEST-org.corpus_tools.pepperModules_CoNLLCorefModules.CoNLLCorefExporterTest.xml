@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.corpus_tools.pepperModules_CoNLLCorefModules.CoNLLCorefExporterTest" time="0.317" tests="5" errors="0" skipped="0" failures="0">
+<testsuite name="org.corpus_tools.pepperModules_CoNLLCorefModules.CoNLLCorefExporterTest" time="0.381" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_101\jre\bin"/>
@@ -28,7 +28,7 @@
     <property name="maven.ext.class.path" value="C:\Program Files (x86)\NetBeans 8.1\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="classworlds.conf" value="C:\Program Files (x86)\NetBeans 8.1\java\maven\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_101\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Python27\;C:\Python27\Scripts;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Perl64\site\bin;C:\Perl64\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Skype\Phone\;C:\Perl\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\maven\bin;C:\Program Files (x86)\xmllint\;C:\Users\az364\AppData\Local\Programs\Python\Python35-32\Scripts\;C:\Users\az364\AppData\Local\Programs\Python\Python35-32\;C:\Users\az364\AppData\Local\Microsoft\WindowsApps;;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_101\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;;C:\Python27\;C:\Python27\Scripts;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Perl64\site\bin;C:\Perl64\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Skype\Phone\;C:\Perl\;C:\maven\bin;C:\Program Files (x86)\xmllint\;C:\Program Files\R\R-3.3.1\bin;C:\Python35\;C:\Python35\Scripts;C:\MinGW\bin;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\CuDNN\cuda\bin;C:\Python35\Scripts\;C:\Python35\;C:\Users\az364\AppData\Local\Microsoft\WindowsApps;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -60,7 +60,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="test_DummyImplementation" classname="org.corpus_tools.pepperModules_CoNLLCorefModules.CoNLLCorefExporterTest" time="0.317"/>
+  <testcase name="test_DummyImplementation" classname="org.corpus_tools.pepperModules_CoNLLCorefModules.CoNLLCorefExporterTest" time="0.381"/>
   <testcase name="testGetSupportedFormats" classname="org.corpus_tools.pepperModules_CoNLLCorefModules.CoNLLCorefExporterTest" time="0"/>
   <testcase name="testGetName" classname="org.corpus_tools.pepperModules_CoNLLCorefModules.CoNLLCorefExporterTest" time="0"/>
   <testcase name="testSetGetCorpusGraph" classname="org.corpus_tools.pepperModules_CoNLLCorefModules.CoNLLCorefExporterTest" time="0"/>
