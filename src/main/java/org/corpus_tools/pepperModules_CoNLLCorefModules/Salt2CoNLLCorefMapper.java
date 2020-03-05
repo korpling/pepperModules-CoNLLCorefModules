@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import org.corpus_tools.pepper.common.DOCUMENT_STATUS;
 import org.corpus_tools.pepper.impl.PepperMapperImpl;
 import org.corpus_tools.pepper.modules.exceptions.PepperModuleDataException;
@@ -51,6 +52,7 @@ public class Salt2CoNLLCorefMapper extends PepperMapperImpl {
 	private String edgeTypePattern = "";
 	private String edgeAnnoNamePattern = "";
 	private String edgeAnnoValuePattern = "";
+	private String outputAnno = "";
         private boolean removeSingletons = false;
 
         /*track nodes identifiers*/
@@ -258,6 +260,7 @@ public class Salt2CoNLLCorefMapper extends PepperMapperImpl {
 
 		this.nodeLayer = properties.getNodeLayer();
 		this.edgeTypePattern = properties.getEdgeType();
+		this.outputAnno = properties.getOutputAnno();
 		String annoKeyVal = properties.getEdgeAnno();
                 if (annoKeyVal.contains("=")){
                     this.edgeAnnoNamePattern = annoKeyVal.split("=")[0];
@@ -303,6 +306,11 @@ public class Salt2CoNLLCorefMapper extends PepperMapperImpl {
             else{
                 this.groupCounter++;
                 group = Integer.toString(this.groupCounter);
+                String annoPrefix = getAnnoPrefix(src);  // look for desired annotations on src
+                if (annoPrefix.length()==0){
+                    annoPrefix = getAnnoPrefix(trg); //look on trg
+                }                        
+                group = annoPrefix + group;
             }
             this.nodesToGroups.put(src,group);
             this.nodesToGroups.put(trg,group);
@@ -319,6 +327,24 @@ public class Salt2CoNLLCorefMapper extends PepperMapperImpl {
             }
 
         }
+                
+        private String getAnnoPrefix(SNode span){
+            String val = "";
+            if (this.outputAnno.length()>0){
+                Set<SAnnotation> annos = span.getAnnotations();
+                for (SAnnotation anno  : annos){ // if some annotation is specified, check that this span has it
+                    if (anno.getName().equals(this.outputAnno)){
+                        val = anno.getValue_STEXT();
+                        break;
+                    }
+                }
+                if (val.length()>0){
+                    val += "-";
+                }
+            }
+            
+            return val;
+        }
         
         private void addSingleNode(SNode span){
             String group;
@@ -326,6 +352,7 @@ public class Salt2CoNLLCorefMapper extends PepperMapperImpl {
             if (!this.nodesToGroups.containsKey(span)){
                 this.groupCounter++;
                 group = Integer.toString(this.groupCounter);
+                group = getAnnoPrefix(span) + group;
                 this.nodesToGroups.put(span,group);
             }
             addNodeStartEnd(span);
@@ -392,10 +419,11 @@ public class Salt2CoNLLCorefMapper extends PepperMapperImpl {
         private String getSeqID(SNode markable){
             
             String temp_group = this.nodesToGroups.get(markable);
+            String annoPrefix = getAnnoPrefix(markable);
             if (!this.groupsToSeqIDs.containsKey(temp_group)){
                 // this temp_groups needs to be assigned a seqID
                 this.maxSeqID++;
-                this.groupsToSeqIDs.put(temp_group, Integer.toString(this.maxSeqID));                
+                this.groupsToSeqIDs.put(temp_group, annoPrefix + Integer.toString(this.maxSeqID));                
             }
             return this.groupsToSeqIDs.get(temp_group);
         }
