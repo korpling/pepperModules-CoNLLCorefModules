@@ -207,6 +207,7 @@ The input gives at least three columns: a numerical token index, which is ignore
 |ConllCoref.Exporter.NodeLayer			    |String           |''|
 |ConllCoref.Exporter.EdgeType  |String       |''|
 |ConllCoref.Exporter.EdgeAnno  |String       |''|
+|ConllCoref.Exporter.OutputAnnotation  |String       |''|
 |ConllCoref.Exporter.RemoveSingletons  |true,false       |false|
 
 ### NodeLayer
@@ -221,6 +222,10 @@ usually not a good idea if your data contains both dependencies and coreference)
 ### EdgeAnno
 
 A String supplying a single, space separated key-value pair denoting a required edge annotation for including a pointing relation. Both the annotation name and value can be regular expressions, but may not contain the equals sign. For example: `coref_type=ana|appos` will cause only pointing relations with an annotation `coref_type` and value matching `ana` or `appos` to be considered. Default is '' (no annotation is required).
+
+### OutputAnnotation
+
+A String supplying an annotation key that exported nodes have, whose annotation value will be added to the bracketed output for each node. For example: `entity` will cause any annotation named entity to have its value prefixed to the coref identifier, so a bracket ID like `(1` which is the beginning of a span entity=person would become `(person-1`. Default is '' (no annotation is outputted).
 
 ### RemoveSingletons
 
