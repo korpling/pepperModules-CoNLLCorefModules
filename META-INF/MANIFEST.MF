@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1610142841564
+Bnd-LastModified: 1612898805359
 Build-Jdk: 1.8.0_252
 Built-By: az364
 Bundle-Description: Provides shared POM-data.
@@ -21,7 +21,7 @@ Import-Package: org.corpus_tools.pepper.common;version="[3.0,4)",org.cor
  pus_tools.pepper.impl;version="[3.0,4)",org.corpus_tools.pepper.modules
  ;version="[3.0,4)",org.corpus_tools.pepper.modules.exceptions;version="
  [3.0,4)",org.corpus_tools.peppermodules.conll.tupleconnector;version="[
- 1.2,2)",org.corpus_tools.salt;version="[3.0,4)",org.corpus_tools.salt.c
+ 2.1,3)",org.corpus_tools.salt;version="[3.0,4)",org.corpus_tools.salt.c
  ommon;version="[3.0,4)",org.corpus_tools.salt.core;version="[3.0,4)",or
  g.corpus_tools.salt.graph;version="[3.0,4)",org.eclipse.emf.common.util
  ,org.slf4j;version="[1.7,2)"

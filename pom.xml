@@ -36,7 +36,7 @@
         <dependency>
             <groupId>org.corpus-tools</groupId>
             <artifactId>pepperModules-CoNLLModules</artifactId>
-            <version>1.2.0</version>
+            <version>2.1.0</version>
             <type>jar</type>
         </dependency>
     </dependencies>
