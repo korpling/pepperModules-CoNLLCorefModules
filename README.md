@@ -208,6 +208,7 @@ The input gives at least three columns: a numerical token index, which is ignore
 |ConllCoref.Exporter.EdgeType  |String       |''|
 |ConllCoref.Exporter.EdgeAnno  |String       |''|
 |ConllCoref.Exporter.OutputAnnotation  |String       |''|
+|ConllCoref.Exporter.OutputSuffixAnnotation  |String       |''|
 |ConllCoref.Exporter.RemoveSingletons  |true,false       |false|
 
 ### NodeLayer
@@ -225,7 +226,11 @@ A String supplying a single, space separated key-value pair denoting a required 
 
 ### OutputAnnotation
 
-A String supplying an annotation key that exported nodes have, whose annotation value will be added to the bracketed output for each node. For example: `entity` will cause any annotation named entity to have its value prefixed to the coref identifier, so a bracket ID like `(1` which is the beginning of a span entity=person would become `(person-1`. Default is '' (no annotation is outputted).
+A String supplying an annotation key that exported nodes have, whose annotation value will be added to the beginning of the bracketed output for each node. For example: `entity` will cause any annotation named entity to have its value prefixed to the coref identifier, so a bracket ID like `(1` which is the beginning of a span entity=person would become `(person-1`. Default is '' (no annotation is outputted).
+
+### OutputSuffixAnnotation
+
+A String supplying an annotation key that exported nodes have, whose annotation value will be added to the end of the bracketed output for each node. For example: `identity` will cause any annotation named identity to have its value suffixed to the coref identifier, so a bracket ID like `(1` which is the beginning of a span identity=United_States would become `(1-United_States`. Default is '' (no annotation is outputted).
 
 ### RemoveSingletons
 
