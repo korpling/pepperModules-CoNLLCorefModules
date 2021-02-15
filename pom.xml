@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.corpus-tools</groupId>
 	<artifactId>pepperModules-CoNLLCorefModules</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 	<name>org.corpus-tools.pepperModules-CoNLLCorefModules</name>
 	<!-- Declares this project to be an extension of the project pepper-parentModule. -->
