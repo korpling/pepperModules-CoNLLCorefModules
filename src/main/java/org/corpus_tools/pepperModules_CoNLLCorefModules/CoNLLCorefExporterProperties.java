@@ -33,12 +33,14 @@ public class CoNLLCorefExporterProperties extends PepperModuleProperties {
         public static final String PROP_EDGE_TYPE = PREFIX + "EdgeType";
         // Supplies an annotation key-value pair that an edge must satisfy to be included; both may be a regular expression, but the separator must be '='
         public static final String PROP_EDGE_ANNO = PREFIX + "EdgeAnno";
-        // Supplies an annotation key-value pair that an edge must satisfy to be included; both may be a regular expression, but the separator must be '='
+        // Whether to remove nodes that have no matching pointing relations, i.e. singletons
         public static final String PROP_REM_SINGLETONS = PREFIX + "RemoveSingletons";
         // Supplies an annotation key that exported nodes have, whose annotation value will be added to the beginning of the bracketed output for each node
         public static final String PROP_NODE_ANNO_OUT = PREFIX + "OutputAnnotation";
         // Supplies an annotation key that exported nodes have, whose annotation value will be added at the end of the bracketed output for each node
         public static final String PROP_NODE_ANNO_OUT_SUFF = PREFIX + "OutputSuffixAnnotation";
+        // Whether to filter out empty tokens with whitespace only or zero-length content
+        public static final String PROP_REM_EMPTY_TOKENS = PREFIX + "RemoveEmptyTokens";
 	
 	
 	public CoNLLCorefExporterProperties(){
@@ -48,6 +50,7 @@ public class CoNLLCorefExporterProperties extends PepperModuleProperties {
 		this.addProperty(new PepperModuleProperty<Boolean>(PROP_REM_SINGLETONS, Boolean.class, "Whether to remove nodes that have no matching pointing relations, i.e. singletons", false, false));
 		this.addProperty(new PepperModuleProperty<String>(PROP_NODE_ANNO_OUT, String.class, "Supplies an annotation key that exported nodes have, whose annotation value will be added to the beginning of the bracketed output for each node", "", false));
 		this.addProperty(new PepperModuleProperty<String>(PROP_NODE_ANNO_OUT_SUFF, String.class, "Supplies an annotation key that exported nodes have, whose annotation value will be added at the end of the bracketed output for each node", "", false));
+		this.addProperty(new PepperModuleProperty<Boolean>(PROP_REM_EMPTY_TOKENS, Boolean.class, "Whether to filter out empty tokens with whitespace only or zero-length content", false, false));
 	}
 	
         public String getNodeLayer(){
@@ -67,6 +70,9 @@ public class CoNLLCorefExporterProperties extends PepperModuleProperties {
         }
         public String getOutputSuffAnno(){
             return getProperty(PROP_NODE_ANNO_OUT_SUFF).getValue().toString();
+        }
+        public boolean getRemoveEmptyTokens(){
+            return ((Boolean) getProperty(PROP_REM_EMPTY_TOKENS).getValue());
         }
         
 }

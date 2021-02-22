@@ -55,6 +55,7 @@ public class Salt2CoNLLCorefMapper extends PepperMapperImpl {
 	private String outputAnno = "";
 	private String outputSuffAnno = "";
         private boolean removeSingletons = false;
+        private boolean removeEmptyTokens = false;
 
         /*track nodes identifiers*/
         private HashMap<SNode,String> nodesToGroups = null;  // holds temporary, non-sequential groups numbers
@@ -175,6 +176,9 @@ public class Salt2CoNLLCorefMapper extends PepperMapperImpl {
                 
                 for (SToken out_tok : getDocument().getDocumentGraph().getSortedTokenByText()){
                     
+                    if (docGraph.getText(out_tok).trim()=="" && this.removeEmptyTokens){
+                        continue;                        
+                    }
                     i++;
                     String coref_col = "";
                     String line = Integer.toString(i) + "\t" + docGraph.getText(out_tok) + "\t";
@@ -269,6 +273,7 @@ public class Salt2CoNLLCorefMapper extends PepperMapperImpl {
                     this.edgeAnnoValuePattern = annoKeyVal.split("=")[1];
                 }                
                 this.removeSingletons = properties.getRemoveSingletons();
+                this.removeEmptyTokens = properties.getRemoveEmptyTokens();
                 
 	}
         

@@ -210,6 +210,7 @@ The input gives at least three columns: a numerical token index, which is ignore
 |ConllCoref.Exporter.OutputAnnotation  |String       |''|
 |ConllCoref.Exporter.OutputSuffixAnnotation  |String       |''|
 |ConllCoref.Exporter.RemoveSingletons  |true,false       |false|
+|ConllCoref.Exporter.RemoveEmptyTokens  |true,false       |false|
 
 ### NodeLayer
 
@@ -235,6 +236,10 @@ A String supplying an annotation key that exported nodes have, whose annotation 
 ### RemoveSingletons
 
 Boolean, whether to include nodes matching the NodeLayer, even if they are not connected to any other node via a pointing relation (i.e. singletons). Default is false, meaning singletons are included.
+
+### RemoveEmptyTokens
+
+Boolean, whether to remove empty tokens, i.e. tokens containing only whitespace or a zero-length string. Default is false, meaning empty tokens are included.
 
 ## Example output format
 
