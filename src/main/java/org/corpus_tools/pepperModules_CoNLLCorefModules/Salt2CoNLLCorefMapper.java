@@ -173,10 +173,9 @@ public class Salt2CoNLLCorefMapper extends PepperMapperImpl {
                 String docName = getDocument().getName();
                 stbOutput.append("# begin document " + docName + "\n");
         	int i = -1;
-                
+
                 for (SToken out_tok : getDocument().getDocumentGraph().getSortedTokenByText()){
-                    
-                    if (docGraph.getText(out_tok).trim()=="" && this.removeEmptyTokens){
+                    if (docGraph.getText(out_tok).trim().equals("") && this.removeEmptyTokens){
                         continue;                        
                     }
                     i++;
